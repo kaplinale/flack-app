@@ -27,7 +27,7 @@ def testdb():
 
 @app.route('/health')
 def health():
-    return('Ok')
+    return('200 Ok')
 
 if __name__ == '__main__':
     app.run(debug=False,host='0.0.0.0', port=5000)
