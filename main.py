@@ -25,5 +25,9 @@ def testdb():
     conn.close()
     return ''.join(txt)
 
+@app.route('/health')
+def health():
+    return('Ok')
+
 if __name__ == '__main__':
     app.run(debug=False,host='0.0.0.0', port=5000)
