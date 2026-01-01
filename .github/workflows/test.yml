@@ -1,28 +1,38 @@
-name: test
+name: Build and Push Docker Image
+
 on:
-   # События, которые запускают jobs
     push:
-      branches: [ "master" ]
-    pull_request:
-      branches: [ "master" ]
+        branches:
+            - '*'
+env:
+    REGISTRY: ghcr.io
+    IMAGE_NAME: ${{ github.repository }}
 
-# jobs запускаются параллельно, если не указана последовательность
 jobs:
-    # Название job вы можете назвать как угодно
-    my_build_job:
-      # Операционная система в виртуальной машине, в которой запускаются процессы
-      runs-on: ubuntu-latest
-        # Шаги
-      steps:
-        # Actions от github: проверяет репозиторий, гит и т.д.
-        - uses: actions/checkout@v3
+    build:
+        runs-on: ubuntu-latest
 
-        # Пример однолинейного простого скрипта shell
-        - name: Run a one-line script
-          run: echo Hello, world!
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
 
-          # Пример многолинейного скрипта shell
-        - name: Run a multi-line script
-          run: |
-                echo Add other actions to build,
-                echo test, and deploy your project.
+            - name: Log in to the Container registry
+              uses: docker/login-action@v3.0.0
+              with:
+                registry: ${{ env.REGISTRY }}
+                username: ${{ github.actor }}
+                password: ${{ secrets.GITHUB_TOKEN }}
+      
+            - name: Extract metadata (tags, labels) for Docker
+              id: meta
+              uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+              with:
+                images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+            
+            - name: Build and push Docker image
+              uses: docker/build-push-action@v5.3.0
+              with:
+                context: .
+                push: true
+                tags: ${{ steps.meta.outputs.tags }}
+                labels: ${{ steps.meta.outputs.labels }}
