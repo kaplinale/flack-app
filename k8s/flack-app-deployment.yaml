@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flack-app
+  labels:
+    app: flack-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flack-app
+  template:
+    metadata:
+      labels:
+        app: flack-app
+    spec:
+      containers:
+      - name: flack-app
+        image: registry.cluster.lan:80/test/flack-app:v4
+        ports:
+        - containerPort: 5000

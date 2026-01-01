@@ -1,0 +1,2 @@
+Flack
+psycopg2-binary
