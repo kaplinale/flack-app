@@ -12,7 +12,7 @@ spec:
     name: http
   selector:
     app: flack-app
-  type: LoadBalancer
+  type: ClusterIP
   externalIPs:
   - 192.168.88.230
   - 192.168.88.231

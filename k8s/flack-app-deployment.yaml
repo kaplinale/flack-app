@@ -16,6 +16,8 @@ spec:
     spec:
       containers:
       - name: flack-app
-        image: registry.cluster.lan:80/test/flack-app:v4
+        image: ghcr.io/kaplinale/flack-app:master
         ports:
         - containerPort: 5000
+      imagePullSecrets:
+        - name: regcred
