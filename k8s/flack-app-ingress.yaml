@@ -24,3 +24,11 @@ spec:
             name: flack-app-service
             port:
               number: 80
+      - path: /test3
+        pathType: Prefix
+        backend:
+          service:
+            name: flack-app-service
+            port:
+              number: 80
+
