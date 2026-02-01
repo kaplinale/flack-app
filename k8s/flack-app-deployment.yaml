@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: flack-app
-        image: ghcr.io/kaplinale/flack-app:master
+        image: ghcr.io/kaplinale/flack-app:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
