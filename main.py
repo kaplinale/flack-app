@@ -13,6 +13,10 @@ def test1():
 def test2():
     return('test2 route revision2')
 
+@app.route('/test3')
+def test2():
+    return('test3 route revision2')
+
 @app.route('/testdb')
 def testdb():
     conn = psycopg2.connect(dbname="flackapp", user="flackapp", password="flackapp", host="local-db", port=5432)
