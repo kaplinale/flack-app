@@ -7,15 +7,15 @@ app = Flask(__name__)
 
 @app.route('/test1')
 def test1():
-    return 'test1 route revision3'
+    return 'test1 route revision4'
 
 @app.route('/test2')
 def test2():
-    return('test2 route revision3')
+    return('test2 route revision4')
 
 @app.route('/test3')
 def test3():
-    return('test3 route revision3')
+    return('test3 route revision4')
 
 @app.route('/testdb')
 def testdb():
