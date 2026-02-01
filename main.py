@@ -14,7 +14,7 @@ def test2():
     return('test2 route revision3')
 
 @app.route('/test3')
-def test2():
+def test3():
     return('test3 route revision3')
 
 @app.route('/testdb')
